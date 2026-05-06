@@ -9,7 +9,7 @@ LIBLLAMA := $(LIB)/libllama.so
 LIBGGML := $(LIB)/libggml.so
 LIBBLAKE3 := $(LIB)/libblake3.so
 
-all: main
+all: rhymesum
 
 $(LIBLLAMA):
 	$(MAKE) -C $(LLAMADIR)
@@ -21,7 +21,7 @@ $(LIBBLAKE3):
 	$(MAKE) -C $(BLAKE3DIR)
 	cp $(BLAKE3DIR)/*.so $(LIB)
 
-main: main.o words.o $(LIBLLAMA) $(LIBGGML) $(LIBBLAKE3)
+rhymesum: main.o words.o $(LIBLLAMA) $(LIBGGML) $(LIBBLAKE3)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 main.o: main.cpp words.h
@@ -31,7 +31,7 @@ words.o: words.cpp words.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rvf *.o main
+	rm -rvf *.o rhymesum
 	rm -vf $(LIB)/*.so
 	$(MAKE) -C $(LLAMADIR) clean
 	$(MAKE) -C $(BLAKE3DIR) clean
