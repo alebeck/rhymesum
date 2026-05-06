@@ -1,0 +1,5 @@
+llama/models/
+main
+*.o
+*.so
+*.a

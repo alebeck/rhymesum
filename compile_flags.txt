@@ -1,0 +1,8 @@
+-std=c++11
+-Wall
+-Wextra
+-pedantic
+-pthread
+-Illama/include
+-Illama/ggml/include
+-Iblake3
